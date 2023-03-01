@@ -1,0 +1,18 @@
+version: "1"
+packages:
+  #生成的go package名稱
+  - name: "db"
+    path: "./broker/db/sqlc"
+    queries: "./broker/db/query/"
+    schema: "./broker/db/migration/"
+    engine: "postgresql"
+    emit_json_tags: true
+    #sqlc會自動產生code 基於設定好的sql statement
+    emit_prepared_queries: false
+    #sqlc會為這個package 產生query的接口
+    emit_interface: true
+    # 把table名字對應到struct名字 ex account table -> Account struct
+    emit_exact_table_names: false
+
+    #查詢時如果list是空的就會返回 [] 而非null
+    emit_empty_slices: true
